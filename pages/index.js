@@ -125,6 +125,11 @@ const Header = ({ children }) => (
           height: 110vw;
         }
       }
+      @media (max-width: 500px) {
+        video {
+          left: -150%;
+        }
+      }
     `}</style>
   </div>
 )
