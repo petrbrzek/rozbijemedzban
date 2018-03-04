@@ -103,12 +103,19 @@ const Header = ({ children }) => (
         .header,
         .video-container,
         .overlay {
-          height: 630px;
+          height: 730px;
         }
       }
       @media (max-width: 670px) {
         video {
           left: -70%;
+        }
+      }
+      @media (max-width: 800px) {
+        .header,
+        .video-container,
+        .overlay {
+          height: 630px;
         }
       }
       @media (max-width: 700px) {
