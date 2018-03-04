@@ -5,7 +5,7 @@ import ReactGA from 'react-ga'
 const Header = ({ children }) => (
   <div className="header">
     <div className="video-container">
-      <video autoPlay muted loop>
+      <video autoPlay muted loop playsInline>
         <source src="/static/dzban.mp4" type="video/mp4" />
         <source src="/static/dzban.webm" type="video/webm" />
       </video>
