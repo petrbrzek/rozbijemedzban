@@ -1,0 +1,8 @@
+type ProvisionalSignupUserPayload {
+  id: ID!
+  token: String!
+}
+
+extend type Mutation {
+  provisionalSignUp(attendeeId: String!): ProvisionalSignupUserPayload
+}
