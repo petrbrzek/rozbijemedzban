@@ -5,6 +5,7 @@ const Header = ({ children }) => (
     <div className="video-container">
       <video autoPlay muted loop>
         <source src="/static/dzban.mp4" type="video/mp4" />
+        <source src="/static/dzban.webm" type="video/webm" />
       </video>
       <div className="overlay" />
     </div>
@@ -256,6 +257,26 @@ export default () => (
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+      }
+      @font-face {
+        font-family: 'Gotham';
+        src: url('http://cldup.com/GoUKsiJHY5.eot');
+        src: url('http://cldup.com/GoUKsiJHY5.eot?#iefix') format('embedded-opentype'),
+            url('https://cldup.com/56DqDDRMNy.woff2') format('woff2'),
+            url('http://cldup.com/jL8uvoxVkp.woff') format('woff'),
+            url('http://cldup.com/zvyd2sKPlE.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Gotham';
+        src: url('http://cldup.com/Nzugi9bWhF.eot');
+        src: url('http://cldup.com/Nzugi9bWhF.eot?#iefix') format('embedded-opentype'),
+            url('https://cldup.com/C9Y1N5Qf43.woff2') format('woff2'),
+            url('https://cldup.com/pixHn5aVxl.woff') format('woff'),
+            url('http://cldup.com/ucdaZLKgg7.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
       }
       html,
       body {
