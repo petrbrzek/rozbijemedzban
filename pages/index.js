@@ -25,7 +25,7 @@ const Header = ({ children }) => (
         neuváženě. Ale ovšem, půjdu pro džbán, ježto si tak přeješ, i nemohu
         tomu již zabránit.“
       </div>
-      <div className="autor">– Kaptah z knihy Egyptan Sinuhet, s. 244</div>
+      <div className="autor">– Kaptah z knihy Egypťan Sinuhet, s. 244</div>
       <div className="banner">
         <span>♥ Svatba Petra a Šárky – 30. 6. 2018 ♥</span>
       </div>
@@ -207,7 +207,7 @@ export default class HomePage extends React.Component {
               <p>
                 1. Svatba se bude konat v <b>sobotu 30. června 2018</b>.
                 <br />
-                2. Obřad se bude konat v kostele Neposkvrněného Početí Panny
+                2. Obřad proběhne v kostele Neposkvrněného Početí Panny
                 Marie <b>(čas bude upřesněn)</b>.
                 <br />
               </p>
@@ -266,7 +266,7 @@ export default class HomePage extends React.Component {
               <div className="media-box">
                 <div className="contact">
                   <p>
-                    V případě čehokoliv napište buď Petrovi nebo spíše Šárce:
+                    V případě čehokoliv napište buď Petrovi, nebo spíše Šárce:
                   </p>
                   <p style={{ paddingTop: '3rem' }}>
                     –{' '}
