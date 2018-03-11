@@ -57,3 +57,14 @@ export const changeAttendsState = gql`
     }
   }
 `
+
+export const changePlusOneState = gql`
+  mutation ChangePlusOneState($attendeeId: ID!, $plusOneMember: Boolean) {
+    updateAttendee(
+      id: $attendeeId
+      plusOneMember: $plusOneMember
+    ) {
+      id
+    }
+  }
+`
