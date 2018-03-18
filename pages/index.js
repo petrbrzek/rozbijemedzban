@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import ReactGA from 'react-ga'
 
 const Header = ({ children }) => (
   <div className="header">
@@ -157,11 +156,6 @@ const Section = ({ headline, body }) => (
 )
 
 export default class HomePage extends React.Component {
-  componentDidMount() {
-    ReactGA.initialize('UA-114998489-1');
-    ReactGA.pageview(window.location.pathname)
-  }
-
   render() {
     return (
       <div className="root">
