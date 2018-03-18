@@ -307,23 +307,23 @@ export default class HomePage extends React.Component {
           }
           @font-face {
             font-family: 'Gotham';
-            src: url('http://cldup.com/GoUKsiJHY5.eot');
-            src: url('http://cldup.com/GoUKsiJHY5.eot?#iefix')
+            src: url('https://cldup.com/GoUKsiJHY5.eot');
+            src: url('https://cldup.com/GoUKsiJHY5.eot?#iefix')
                 format('embedded-opentype'),
               url('https://cldup.com/56DqDDRMNy.woff2') format('woff2'),
-              url('http://cldup.com/jL8uvoxVkp.woff') format('woff'),
-              url('http://cldup.com/zvyd2sKPlE.ttf') format('truetype');
+              url('https://cldup.com/jL8uvoxVkp.woff') format('woff'),
+              url('https://cldup.com/zvyd2sKPlE.ttf') format('truetype');
             font-weight: 500;
             font-style: normal;
           }
           @font-face {
             font-family: 'Gotham';
-            src: url('http://cldup.com/Nzugi9bWhF.eot');
-            src: url('http://cldup.com/Nzugi9bWhF.eot?#iefix')
+            src: url('https://cldup.com/Nzugi9bWhF.eot');
+            src: url('https://cldup.com/Nzugi9bWhF.eot?#iefix')
                 format('embedded-opentype'),
               url('https://cldup.com/C9Y1N5Qf43.woff2') format('woff2'),
               url('https://cldup.com/pixHn5aVxl.woff') format('woff'),
-              url('http://cldup.com/ucdaZLKgg7.ttf') format('truetype');
+              url('https://cldup.com/ucdaZLKgg7.ttf') format('truetype');
             font-weight: bold;
             font-style: normal;
           }
