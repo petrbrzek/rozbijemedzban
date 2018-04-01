@@ -118,16 +118,16 @@ class ListAttendeesView extends React.Component {
               <b>{index + 1}. </b>
             </div>
             <div className="cell">
-              <b>{item.fullName}</b>
+              <b>{item.fullName} {item.email || ''}</b>
             </div>
             <div className="cell">
-              {item.email || <span>E-mail nezadán</span>}
-            </div>
-            <div className="cell">
-              {item.attends ? <b>Přijde</b> : <span>Nepřijde</span>}
+              <span>{item.attends ? <b>Přijde </b> : <span>Nepřijde </span>}</span>
             </div>
             <div className="cell">
               {item.plusOneMember ? <b>+1</b> : <span>sám</span>}
+            </div>
+            <div className="cell">
+              <span>{item.visits >= 0 ? <i>{item.visits || 0} zobrazení</i> : null}</span>
             </div>
           </div>
         ))}
