@@ -26,7 +26,7 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build && next export;cp CNAME out/CNAME",
+    "build": "next build && next export",
     "start": "next start",
     "publish": "git subtree push --prefix out origin gh-pages"
   }
