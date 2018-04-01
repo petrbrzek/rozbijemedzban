@@ -52,10 +52,7 @@ export const showSpecificAttendee = gql`
 
 export const changeAttendsState = gql`
   mutation ChangeAttendsState($attendeeId: ID!, $attends: ATTENDS_STATE!) {
-    updateAttendee(
-      id: $attendeeId
-      attends: $attends
-    ) {
+    updateAttendee(id: $attendeeId, attends: $attends) {
       id
     }
   }
@@ -63,10 +60,7 @@ export const changeAttendsState = gql`
 
 export const changePlusOneState = gql`
   mutation ChangePlusOneState($attendeeId: ID!, $plusOneMember: Boolean) {
-    updateAttendee(
-      id: $attendeeId
-      plusOneMember: $plusOneMember
-    ) {
+    updateAttendee(id: $attendeeId, plusOneMember: $plusOneMember) {
       id
     }
   }
@@ -74,9 +68,19 @@ export const changePlusOneState = gql`
 
 export const addViewToAttendee = gql`
   mutation AddViewToAttendee($attendeeId: ID!, $visits: Int) {
-    updateAttendee(
-      id: $attendeeId
-      visits: $visits
+    updateAttendee(id: $attendeeId, visits: $visits) {
+      id
+    }
+  }
+`
+
+export const addAttendee = gql`
+  mutation AddAttendee($fullName: String!, $email: String, $attends: ATTENDS_STATE, $plusOneMember: Boolean) {
+    createAttendee(
+      fullName: $fullName
+      email: $email
+      attends: $attends
+      plusOneMember: $plusOneMember
     ) {
       id
     }

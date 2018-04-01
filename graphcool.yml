@@ -40,6 +40,10 @@ permissions:
   authenticated: true
   fields: [email, attends, plusOneMember, visits]
   query: src/permissions/main.graphql:attendeeExists
+
+- operation: Attendee.create
+  authenticated: true
+  query: src/permissions/main.graphql:isAdmin
   
 # Your root tokens used for functions to get full access to the API
 # Read more here:
