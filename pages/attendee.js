@@ -13,11 +13,15 @@ const copy = {
 
 class AttendeeDetailPage extends React.Component {
   state = {
-    inviteId: null
+    inviteId: false,
+    didMount: false,
   }
 
   componentDidMount() {
     this.getInviteId()
+    this.setState({
+      didMount: true,
+    })
   }
 
   getInviteId() {
@@ -32,6 +36,8 @@ class AttendeeDetailPage extends React.Component {
   }
 
   render() {
+    if (!this.state.didMount) { return null }
+
     const { inviteId } = this.state
 
     let content = (
