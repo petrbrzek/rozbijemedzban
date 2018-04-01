@@ -1,5 +1,5 @@
 import React from 'react'
-import Head from 'next/head'
+import Head from '../src/components/head'
 
 const Header = ({ children }) => (
   <div className="header">
@@ -159,40 +159,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div className="root">
-        <Head>
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width" />
-          <meta
-            name="description"
-            content="♥ Svatba Petra a Šárky – 30. 6. 2018 ♥"
-          />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="RozbijemeDzban" />
-          <meta property="og:title" content="🏺 Rozbijeme spolu džbán!" />
-          <meta property="og:image" content={`/static/spolecna.png`} />
-          <meta
-            property="og:description"
-            content="♥ Svatba Petra a Šárky – 30. 6. 2018 ♥"
-          />
-
-          <title>Rozbijeme spolu džbán!</title>
-          <link
-            href="https://fonts.googleapis.com/css?family=Open+Sans|PT+Serif:400i&amp;subset=cyrillic,cyrillic-ext,latin-ext"
-            rel="stylesheet"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/static/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/static/favicon-16x16.png"
-          />
-        </Head>
+        <Head />
         <Header />
         <Section
           headline="MÍSTO A ČAS"
