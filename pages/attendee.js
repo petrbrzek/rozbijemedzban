@@ -1,3 +1,4 @@
+import Head from '../src/components/head'
 import React from 'react'
 import { H2, P } from 'glamorous'
 import { graphql, compose } from 'react-apollo'
@@ -11,35 +12,39 @@ const copy = {
 
 
 class AttendeeDetailPage extends React.Component {
-
   render() {
-    const data = this.props.data
-    if (data && data.loading) {
-      return (
-        <div>
-          <h1>{copy.loading}</h1>
-        </div>
-      )
-    }
-
     let inviteId
     if (this.props.url && this.props.url.query) {
       inviteId = this.props.url.query.invite
     }
 
+    let content = (
+      <AttendeeContent
+        client={this.props.client}
+        attendeeId={inviteId}
+      />
+    )
     if (!inviteId) {
-      return (
-        <h1>{copy.noInvite}</h1>
+      content = (
+        <div className="layout">
+          <h1>{copy.noInvite}</h1>
+        </div>
       )
     }
-    
+
+    const data = this.props.data
+    if (data && data.loading) {
+      content = (
+        <div className="layout">
+          <h1>{copy.loading}</h1>
+        </div>
+      )
+    }
 
     return (
       <div>
-        <AttendeeContent
-          client={this.props.client}
-          attendeeId={inviteId}
-        />
+        <Head />
+        {content}
 
         <style global jsx>{`
           * {
@@ -108,6 +113,15 @@ class AttendeeDetailPage extends React.Component {
           .text-center {
             text-align: center;
           }
+
+          @media (max-width: 700px) {
+            html, body {
+              font-size: 8px;
+            }
+            .layout {
+              width: 100%;
+            }
+          }
         `}</style>
       </div>
     )
@@ -127,7 +141,6 @@ class AttendeeContentView extends React.Component {
   }
 
   componentDidMount() {
-    // TODO: uncomment
     this._signUpProvisionalUser()
   }
 
@@ -186,7 +199,7 @@ class AttendeeContentView extends React.Component {
 
   _handlePlusOne = (plusOne) => {
     this.setState({
-      plusOne
+      plusOne,
     })
     this.props.changePlusOneState({
       variables: {
@@ -203,7 +216,6 @@ class AttendeeContentView extends React.Component {
   }
 
   render() {
-    // TODO: uncomment
     if (this.state.loading) {
       return (
         <div className="layout text-center">
@@ -220,13 +232,6 @@ class AttendeeContentView extends React.Component {
         </div>
       )
     }
-
-    // TODO: remove
-    // const Attendee = {
-    //   fullName: 'Ivana Nemcova',
-    //   attends: null,
-    //   plusOneMember: null,
-    // }
 
     const goingState = (this.state.going || Attendee.attends)
     let goingClassName = ''
@@ -329,6 +334,7 @@ class AttendeeContentView extends React.Component {
             text-transform: uppercase;
             cursor: pointer;
             margin-right: 2rem;
+            margin-bottom: 1rem;
           }
           .box {
             margin: 2rem 0 3rem;
