@@ -38,7 +38,7 @@ permissions:
 
 - operation: Attendee.update
   authenticated: true
-  fields: [email, attends, plusOneMember]
+  fields: [email, attends, plusOneMember, visits]
   query: src/permissions/main.graphql:attendeeExists
   
 # Your root tokens used for functions to get full access to the API

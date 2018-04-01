@@ -24,6 +24,7 @@ type Attendee @model {
   email: String @isUnique
   attends: ATTENDS_STATE
   plusOneMember: Boolean
+  visits: Int
   user: User @relation(name: "UserAttendee")
 }
 

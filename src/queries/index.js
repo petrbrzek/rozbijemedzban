@@ -24,6 +24,7 @@ export const listAllAttendees = gql`
       email
       attends
       plusOneMember
+      visits
     }
   }
 `
@@ -44,6 +45,7 @@ export const showSpecificAttendee = gql`
       email
       attends
       plusOneMember
+      visits
     }
   }
 `
@@ -64,6 +66,17 @@ export const changePlusOneState = gql`
     updateAttendee(
       id: $attendeeId
       plusOneMember: $plusOneMember
+    ) {
+      id
+    }
+  }
+`
+
+export const addViewToAttendee = gql`
+  mutation AddViewToAttendee($attendeeId: ID!, $visits: Int) {
+    updateAttendee(
+      id: $attendeeId
+      visits: $visits
     ) {
       id
     }

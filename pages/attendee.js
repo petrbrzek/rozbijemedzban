@@ -3,7 +3,7 @@ import React from 'react'
 import { H2, P } from 'glamorous'
 import { graphql, compose } from 'react-apollo'
 import withData from '../src/apollo-setup/with-data'
-import { signUpProvisionalUser, showSpecificAttendee, changeAttendsState, changePlusOneState } from '../src/queries'
+import { signUpProvisionalUser, showSpecificAttendee, changeAttendsState, changePlusOneState, addViewToAttendee } from '../src/queries'
 
 const copy = {
   loading: 'Načítám data o pozvánce...',
@@ -162,6 +162,19 @@ class AttendeeContentView extends React.Component {
     }
   }
 
+  _addView = async (visits) => {
+    try {
+      await this.props.addViewToAttendee({
+        variables: {
+          attendeeId: this.props.attendeeId,
+          visits: visits + 1,
+        }
+      })
+    } catch (error) {
+      console.error('Error #_addView: ', error)
+    }
+  }
+
   _requestAttendee = () => {
     this.props.client.query({
       query: showSpecificAttendee,
@@ -172,10 +185,12 @@ class AttendeeContentView extends React.Component {
     })
       .then((result) => {
         console.log('Result ', result.data, result.data.Attendee)
+        const attendee = result.data.Attendee
         this.setState({
-          Attendee: result.data && result.data.Attendee,
+          Attendee: attendee,
           loading: false,
         })
+        this._addView(attendee.visits)
       })
   }
 
@@ -347,6 +362,9 @@ class AttendeeContentView extends React.Component {
 }
 
 const AttendeeContent = compose(
+  graphql(addViewToAttendee, {
+    name: 'addViewToAttendee',
+  }),
   graphql(signUpProvisionalUser, {
     name: 'signUpProvisionalUser',
   }),
