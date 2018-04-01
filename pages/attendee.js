@@ -12,12 +12,27 @@ const copy = {
 
 
 class AttendeeDetailPage extends React.Component {
-  render() {
-    let inviteId
-    if (this.props.url && this.props.url.query) {
-      inviteId = this.props.url.query.invite || ''
-      inviteId = inviteId.replace(/\/$/, '')
+  state = {
+    inviteId: null
+  }
+
+  componentDidMount() {
+    this.getInviteId()
+  }
+
+  getInviteId() {
+    let href = window.location.href
+    href = href.replace(/\/$/, '')
+    if (href.includes('?invite=')) {
+      const arr = href.split('?invite=')
+      this.setState({
+        inviteId: arr[arr.length - 1]
+      })
     }
+  }
+
+  render() {
+    const { inviteId } = this.state
 
     let content = (
       <AttendeeContent
