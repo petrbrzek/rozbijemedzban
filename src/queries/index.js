@@ -19,6 +19,7 @@ export const authenticateUser = gql`
 export const listAllAttendees = gql`
   query ListAllAttendees {
     allAttendees {
+      id
       fullName
       email
       attends
