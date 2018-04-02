@@ -159,6 +159,9 @@ class ListAttendeesView extends React.Component {
                 {item.visits >= 0 ? <i>{item.visits || 0} zobrazení</i> : null}
               </span>
             </div>
+            <div className="cell">
+              <textarea value={`https://www.rozbijemedzban.cz/attendee/?invite=${item.id}`} />
+            </div>
           </div>
         ))}
 
