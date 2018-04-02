@@ -296,10 +296,10 @@ class AttendeeContentView extends React.Component {
     let plusOneCopy = 'ZATÍM BEZ ODPOVĚDI'
     if (plusOneState) {
       plusOneClassName = 'positive'
-      plusOneCopy = 'SUPER. BUDEME S TÍM POČÍTAT.'
+      plusOneCopy = 'BUDEŠ. SUPER, BUDEME S TÍM POČÍTAT.'
     } else if (plusOneState === false) {
       plusOneClassName = 'negative'
-      plusOneCopy = 'OK. DÍKY ZA ODPOVĚĎ.'
+      plusOneCopy = 'NEBUDEŠ. DÍKY ZA ODPOVĚĎ.'
     }
     
 
