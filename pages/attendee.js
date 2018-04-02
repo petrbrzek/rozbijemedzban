@@ -76,23 +76,23 @@ class AttendeeDetailPage extends React.Component {
           }
           @font-face {
             font-family: 'Gotham';
-            src: url('http://cldup.com/GoUKsiJHY5.eot');
-            src: url('http://cldup.com/GoUKsiJHY5.eot?#iefix')
+            src: url('https://cldup.com/GoUKsiJHY5.eot');
+            src: url('https://cldup.com/GoUKsiJHY5.eot?#iefix')
                 format('embedded-opentype'),
               url('https://cldup.com/56DqDDRMNy.woff2') format('woff2'),
-              url('http://cldup.com/jL8uvoxVkp.woff') format('woff'),
-              url('http://cldup.com/zvyd2sKPlE.ttf') format('truetype');
+              url('https://cldup.com/jL8uvoxVkp.woff') format('woff'),
+              url('https://cldup.com/zvyd2sKPlE.ttf') format('truetype');
             font-weight: 500;
             font-style: normal;
           }
           @font-face {
             font-family: 'Gotham';
-            src: url('http://cldup.com/Nzugi9bWhF.eot');
-            src: url('http://cldup.com/Nzugi9bWhF.eot?#iefix')
+            src: url('https://cldup.com/Nzugi9bWhF.eot');
+            src: url('https://cldup.com/Nzugi9bWhF.eot?#iefix')
                 format('embedded-opentype'),
               url('https://cldup.com/C9Y1N5Qf43.woff2') format('woff2'),
               url('https://cldup.com/pixHn5aVxl.woff') format('woff'),
-              url('http://cldup.com/ucdaZLKgg7.ttf') format('truetype');
+              url('https://cldup.com/ucdaZLKgg7.ttf') format('truetype');
             font-weight: bold;
             font-style: normal;
           }
@@ -175,7 +175,11 @@ class AttendeeContentView extends React.Component {
       })
       const graphcoolToken = response.data.provisionalSignUp.token
       localStorage.setItem('graphcoolToken', graphcoolToken)
-      this._requestAttendee()
+      const attendee = await this._requestAttendee()
+      console.log('test', attendee)
+      if (attendee) {
+        this._addView(attendee.visits)
+      }
     } catch (error) {
       console.error('Error #signUpProvisionalUser: ', error)
       this.setState({
@@ -198,22 +202,28 @@ class AttendeeContentView extends React.Component {
   }
 
   _requestAttendee = () => {
-    this.props.client.query({
-      query: showSpecificAttendee,
-      fetchPolicy: 'network-only',
-      variables: {
-        attendeeId: this.props.attendeeId
-      }
-    })
-      .then((result) => {
-        console.log('Result ', result.data, result.data.Attendee)
-        const attendee = result.data.Attendee
-        this.setState({
-          Attendee: attendee,
-          loading: false,
-        })
-        this._addView(attendee.visits)
+    return (
+      this.props.client.query({
+        query: showSpecificAttendee,
+        fetchPolicy: 'network-only',
+        variables: {
+          attendeeId: this.props.attendeeId
+        }
       })
+        .then((result) => {
+          console.log('Result ', result.data, result.data.Attendee)
+          const attendee = result.data.Attendee
+          this.setState({
+            Attendee: attendee,
+            loading: false,
+          })
+          return attendee
+        })
+        .catch((error) => {
+          console.error(`Error #_requestAttendee: `, error)
+          return null
+        })
+    )
   }
 
   _handleGoing = (going) => {
