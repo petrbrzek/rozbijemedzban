@@ -169,7 +169,7 @@ export default class HomePage extends React.Component {
                 1. Svatba se bude konat v <b>sobotu 30. června 2018</b>.
                 <br />
                 2. Obřad proběhne v kostele Neposkvrněného početí Panny
-                Marie <b>(čas bude upřesněn)</b>.
+                Marie <b>v 11:00</b>.
                 <br />
               </p>
               <div className="media-box">
