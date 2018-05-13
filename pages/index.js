@@ -210,7 +210,7 @@ export default class HomePage extends React.Component {
               <div className="list">
                 <p>
                   ✅ Spuštění svatebního webu<br />
-                  ❌ Pozvánky a jejich rozeslání<br />
+                  ✅ Pozvánky a jejich rozeslání<br />
                   ❌ Program svatby<br />
                   ❌ Seznam darů<br />
                   ❌ Logistiku (parkování aut a další)<br />
