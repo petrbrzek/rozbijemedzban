@@ -86,3 +86,29 @@ export const addAttendee = gql`
     }
   }
 `
+
+export const listAllGifts = gql`
+  query ListAllGifts {
+    allGifts {
+      id
+      who
+      title
+      desc
+      reserved
+    }
+  }
+`
+
+export const reserveGift = gql`
+  mutation reserveGift($id: ID!, $who: String) {
+    updateGift(
+      id: $id
+      who: $who
+      reserved: true
+    ) {
+      id
+      reserved
+      who
+    }
+  } 
+`

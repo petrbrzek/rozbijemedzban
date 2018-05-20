@@ -44,6 +44,15 @@ permissions:
 - operation: Attendee.create
   authenticated: true
   query: src/permissions/main.graphql:isAdmin
+
+- operation: Gift.create
+  authenticated: false
+
+- operation: Gift.update
+  authenticated: false
+
+- operation: Gift.read
+  authenticated: false
   
 # Your root tokens used for functions to get full access to the API
 # Read more here:

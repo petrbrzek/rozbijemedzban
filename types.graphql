@@ -28,6 +28,14 @@ type Attendee @model {
   user: User @relation(name: "UserAttendee")
 }
 
+type Gift @model {
+  id: ID! @isUnique
+  title: String! @isUnique
+  desc: String!
+  reserved: Boolean
+  who: String
+}
+
 enum ATTENDS_STATE {
   GOING
   NOT_GOING

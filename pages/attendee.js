@@ -1,6 +1,5 @@
 import Head from '../src/components/head'
 import React from 'react'
-import { H2, P } from 'glamorous'
 import { graphql, compose } from 'react-apollo'
 import withData from '../src/apollo-setup/with-data'
 import { signUpProvisionalUser, showSpecificAttendee, changeAttendsState, changePlusOneState, addViewToAttendee } from '../src/queries'
