@@ -4,6 +4,7 @@ import { graphql, compose } from 'react-apollo'
 import Modal from 'react-responsive-modal'
 import Confetti from 'react-confetti'
 import sizeMe from 'react-sizeme'
+import Linkify from 'react-linkify'
 
 import withData from '../src/apollo-setup/with-data'
 
@@ -14,7 +15,9 @@ const GiftBox = ({ gift, requestClick }) => {
     <div className="gift-box">
       <div className="gift-info">
         <h2>{gift.title}</h2>
-        <p>{gift.desc}</p>
+        <p>
+          <Linkify>{gift.desc}</Linkify>
+        </p>
       </div>
       <div className="gift-button-box">
         <button disabled={gift.reserved} onClick={() => requestClick(gift.id)}>
@@ -303,7 +306,7 @@ class GiftsPage extends React.Component {
             font-size: 2rem;
           }
           a {
-            color: rgba(84, 58, 12, 1);
+            color: #9468e0;
             text-decoration: none;
           }
           @media (max-width: 700px) {

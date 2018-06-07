@@ -23,6 +23,7 @@
     "react-confetti": "^2.3.0",
     "react-dom": "^16.2.0",
     "react-ga": "^2.4.1",
+    "react-linkify": "^0.2.2",
     "react-responsive-modal": "^3.0.1",
     "react-sizeme": "^2.4.3",
     "validator": "^9.0.0"
