@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from '../src/components/head'
+import Link from 'next/link'
 
 const Header = ({ children }) => (
   <div className="header">
@@ -212,7 +213,7 @@ export default class HomePage extends React.Component {
                   ✅ Spuštění svatebního webu<br />
                   ✅ Pozvánky a jejich rozeslání<br />
                   ❌ Program svatby<br />
-                  ❌ Seznam darů<br />
+                  ✅ <Link href="/gifts"><a>Seznam darů <i>(klikněte pro otevření)</i></a></Link> <br />
                   ❌ Logistiku (parkování aut a další)<br />
                 </p>
               </div>
