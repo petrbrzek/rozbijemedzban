@@ -112,3 +112,11 @@ export const reserveGift = gql`
     }
   } 
 `
+
+export const isGiftReserved = gql`
+  query Gift($id: ID!) {
+    Gift(id: $id) {
+      reserved
+    }
+  }
+`

@@ -7,7 +7,7 @@ import sizeMe from 'react-sizeme'
 
 import withData from '../src/apollo-setup/with-data'
 
-import { listAllGifts, reserveGift } from '../src/queries'
+import { listAllGifts, reserveGift, isGiftReserved } from '../src/queries'
 
 const GiftBox = ({ gift, requestClick }) => {
   return (
@@ -18,28 +18,39 @@ const GiftBox = ({ gift, requestClick }) => {
       </div>
       <div className="gift-button-box">
         <button disabled={gift.reserved} onClick={() => requestClick(gift.id)}>
-          {gift.reserved ? 
-            <span>🎉 Rezervováno - {gift.who ? <i className="who">{gift.who}</i> : ''}</span>
-          : 'Zamluvit dárek'}
+          {gift.reserved ? (
+            <span>
+              🎉 Rezervováno -{' '}
+              {gift.who ? <i className="who">{gift.who}</i> : ''}
+            </span>
+          ) : (
+            'Zamluvit dárek'
+          )}
         </button>
       </div>
     </div>
   )
 }
 
-
 const EnhancedConfetti = sizeMe({ monitorHeight: true, monitorWidth: true })(
   class InternalConfetti extends React.Component {
-    render () {
+    render() {
       return (
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+          }}
+        >
           <Confetti {...this.props.size} />
         </div>
       )
     }
   }
 )
-
 
 class GiftsPage extends React.Component {
   state = this._getInitState()
@@ -51,6 +62,7 @@ class GiftsPage extends React.Component {
       reservationLoading: false,
       serverError: false,
       inputError: false,
+      alreadyReservedError: false,
       whoReserved: '',
       didReserve: false,
     }
@@ -80,19 +92,39 @@ class GiftsPage extends React.Component {
     })
 
     try {
+      const gift = await this.props.client.query({
+        query: isGiftReserved,
+        fetchPolicy: 'network-only',
+        variables: {
+          id: this.state.pendingReservationId,
+        },
+      })
+      if (gift && gift.data && gift.data.Gift && gift.data.Gift.reserved) {
+        throw new Error('already-reserved')
+      }
+
       const reservedGift = await this.props.reserveGift({
         variables: {
           id: this.state.pendingReservationId,
           who: this.state.whoReserved,
         },
       })
-      if (this.props.allGifts) {
-        this.props.allGifts.refetch()
+      if (this.props.gifts) {
+        this.props.gifts.refetch()
       }
       this.handleModalClose()
       this.showSomeLove()
     } catch (error) {
       console.error('Error #handleReservation: ', error)
+      if (error.message === 'already-reserved') {
+        this.setState({
+          alreadyReservedError: true,
+        })
+        if (this.props.gifts) {
+          this.props.gifts.refetch()
+        }
+        return
+      }
       this.setState({
         serverError: true,
       })
@@ -110,9 +142,9 @@ class GiftsPage extends React.Component {
     }, 10000)
   }
 
-  handleInputChange = (event) => {
+  handleInputChange = event => {
     const { value } = event.target
-    
+
     this.setState({
       whoReserved: value,
       inputError: false,
@@ -142,6 +174,8 @@ class GiftsPage extends React.Component {
         ))
     }
 
+    const noError = !this.state.alreadyReservedError && !this.state.serverError
+
     return (
       <div className="root">
         <Head />
@@ -163,17 +197,26 @@ class GiftsPage extends React.Component {
           onClose={this.handleModalClose}
           center
         >
-          <h2>Už máš téměř rezervováno</h2>
+          <h2>Už máš téměř rezervováno.</h2>
           <p>
-            Zapiš se k daru svoji přezdívkou tak, abychom nepoznali od koho je.<br />
+            Zapiš se k daru svou přezdívkou tak, abychom nepoznali od koho dárek je.<br />
             Přezdívka bude u daru zobrazena.
           </p>
+
+          {this.state.alreadyReservedError ? (
+            <p className="error">
+              <br />Právě v tento moment si už někdo jiný rezervoval tento
+              dárek, což je fakt smůla 🤣.
+            </p>
+          ) : null}
 
           {this.state.serverError ? (
             <p className="error">
               <br />Nastala chyba, což je fakt nepříjemný. Kontaktuj Petra 🤓
             </p>
-          ) : (
+          ) : null}
+
+          {noError ? (
             <div>
               <form className="reservation-box">
                 <input
@@ -193,14 +236,11 @@ class GiftsPage extends React.Component {
                     : 'Potvrdit rezervaci'}
                 </button>
               </form>
-              {this.state.inputError ?
-                <p>Vyplň prosím přezdívku 🙏</p>
-              : null}
+              {this.state.inputError ? <p>Vyplň prosím přezdívku 🙏</p> : null}
             </div>
-          )}
+          ) : null}
         </Modal>
-        
-        
+
         {this.state.didReserve ? <EnhancedConfetti /> : null}
 
         <style global jsx>{`
@@ -384,7 +424,6 @@ class GiftsPage extends React.Component {
           .error {
             color: red;
           }
-          
         `}</style>
       </div>
     )
