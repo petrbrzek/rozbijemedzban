@@ -308,6 +308,7 @@ class GiftsPage extends React.Component {
           a {
             color: #9468e0;
             text-decoration: none;
+            word-wrap: break-word;
           }
           @media (max-width: 700px) {
             html,
