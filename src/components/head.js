@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-export default ({ titleContent = 'Rozbijeme spolu džbán!' }) => (
+export default ({ titleContent = 'Rozbijeme spolu džbán!', children }) => (
   <Head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -31,5 +31,6 @@ export default ({ titleContent = 'Rozbijeme spolu džbán!' }) => (
       sizes="16x16"
       href="/static/favicon-16x16.png"
     />
+    {children}
   </Head>
 )

@@ -5,6 +5,7 @@ module.exports = {
       '/admin': { page: '/admin' },
       '/attendee': { page: '/attendee' },
       '/gifts': { page: '/gifts' },
+      '/timeline': { page: '/timeline' },
     }
   }
 }
