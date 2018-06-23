@@ -34,6 +34,7 @@ const Header = ({ children }) => (
       .header {
         height: 800px;
         color: #fff;
+        position: relative;
       }
       .separator {
         width: 65%;
@@ -156,11 +157,45 @@ const Section = ({ headline, body }) => (
   </div>
 )
 
+const Navigation = () => (
+  <div className="layout">
+  <div className="nav">
+    
+      <Link href="/timeline"><a><span>Program svatby</span></a></Link>
+      <Link href="/gifts"><a><span>Seznam darů</span></a></Link>
+    </div>
+    
+    <style jsx>{`
+      .nav {
+        height: 70px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+      }
+      a {
+        height: 100%;
+        display: flexbox;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        text-decoration: none;
+        margin-right: 4rem;
+        font-family: Gotham, sans-serif;
+        font-weight: bold;
+      }
+      a:hover {
+        color: rgba(84, 58, 12, 0.5);
+      }
+    `}</style>
+  </div>
+)
+
 export default class HomePage extends React.Component {
   render() {
     return (
       <div className="root">
         <Head />
+        <Navigation />
         <Header />
         <Section
           headline="MÍSTO A ČAS"
@@ -212,9 +247,9 @@ export default class HomePage extends React.Component {
                 <p>
                   ✅ Spuštění svatebního webu<br />
                   ✅ Pozvánky a jejich rozeslání<br />
-                  ❌ Program svatby<br />
+                  ✅ <Link href="/timeline"><a>Program svatby <i>(klikněte pro otevření)</i></a></Link><br />
                   ✅ <Link href="/gifts"><a>Seznam darů <i>(klikněte pro otevření)</i></a></Link> <br />
-                  ❌ Logistiku (parkování aut a další)<br />
+                  ✅ Logistiku<br />
                 </p>
               </div>
             </div>
